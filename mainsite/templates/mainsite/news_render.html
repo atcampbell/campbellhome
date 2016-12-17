@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="mainContent">
+    <h3>News</h3>
+      {% for news in news %}
+        <p>{{ news.title }}</br>
+        {{ news.content }}</p>
+      {% endfor %}
+    </div>
+</div>
