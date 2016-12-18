@@ -36,6 +36,10 @@ $(document).ready(function(){
           $grid.masonry('layout');
         });
 
+        // interpolate text colour
+        // $('a').animate({"color":"#000000"}, 50);
+        $('a').css({"color":"#000000"});
+
         $('.mainContent').fadeIn('fast');
       });
     });
@@ -43,24 +47,20 @@ $(document).ready(function(){
   });
 
   $(".showSketch").click(function() {
-    var id = this.id;
-    $.ajax({
-      url: "/get_main_content",
-      type: "get",
-      data: { workWanted: id},
-      success: function(response) {
-        $('.mainContent').fadeOut('fast', function() {
-          // $('#mainSketch').html(response);
-          // $('#mainSketch').fadeIn('fast');
-        });
-      }
+    $('.mainContent').fadeOut('fast', function() {
+      $('.mainContent').css("margin-top", "0px");
+      $('body').css("overflow", "hidden");
+      $('a').css({"color":"#FFFFFF"});
+      $('#mainSketch').fadeIn('fast');
     });
-
+    console.log('hey there');
   });
 
   // get work wanted when clicking image
   $(".contentWrapper").on("click", ".grid-item", function() {
     var id = this.id;
+
+    console.log('getting clicked');
 
     // TODO maybe a better way than fading this out all the time?
     // $('#mainSketch').fadeOut('fast');

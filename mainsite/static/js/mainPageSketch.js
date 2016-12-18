@@ -1,136 +1,78 @@
-// function setup() {
-// 	fill(255,50,50);
-// 	createCanvas(600,400);
-// 	line(25, 15, 400, 400);
-// }
-
-// function setup() {
-// 	var canvas = createCanvas(windowWidth,windowHeight);
-// 	// canvas.position(0,0);
-// 	canvas.parent('ske');
-// 	background(255,100,100);
-// 	// fill(0,100,255);
-// 	// ellipse(100,100,width,height);
-// }
-
-var ccx, ccy;
-var rad, angle, thick;
-var freq, mod, sinAngle, amp;
-var grad1, grad2;
+var cx, cy;
+var freq01, mod01, sinAngle01, amp01;
+var freq02, mod02, sinAngle02, amp02;
+var circRad;
 
 function setup() {
-	var canvas = createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(windowWidth, windowHeight);
+  // createCanvas(windowWidth, windowHeight);
 	canvas.parent('mainSketch');
-	strokeWeight(2);
-	rad = 300;
-	ccx = width/2;
-	ccy = height/2;
-	angle= 5;
 
-	amp = 0.2;
+  cx = windowWidth/2;
+  cy = windowHeight/2;
 
-	sinAngle = 0;
-	mod = 0;
-	freq = 0.09;
+	amp01 = 0.2;
+	sinAngle01 = 0;
+	mod01 = 0;
+	freq01 = 0.004;
 
-	// light yellow - blue
-	// grad1 = color(200, 220, 172);
-	// grad2 = color(143, 214, 218);
+	amp02 = -0.3;
+	sinAngle02 = 0;
+	mod02 = 0;
+	freq02 = 0.003;
 
-	// aqua - pink 02
- 	// grad1 = color(161, 209, 195);
-	// grad2 = color(220, 199, 182);
+	// TODO this:
+	circRad = 325;
+	strokeWeight(4);
+	// or this if smaller
+	// circRad = 300;
+	// strokeWeight(3);
 
-	// aqua - pink
-	// grad1 = color(124, 207, 187);
-	// grad2 = color(255, 154, 167);
-
-	// light blue - purple
-	grad1 = color(180, 235, 235);
-	grad2 = color(235, 210, 235);
+	stroke(255);
 }
 
 function draw() {
-	//   sinFreq01 = sinFreq01 * 0.09 + 0.04;
+  background(46, 0, 238);
 
-	//   sinModulate = sin(sinAngle);
-	//   sinAngle += sinFreq01;
+	// TODO make a circle class which calls the line draw function
+  // and updates its sin values
+  // OR do array of these values and update each one...
+	mod01 = sin(sinAngle01);
+	sinAngle01 += freq01;
+	mod01 *= amp01;
 
-	// background(255);
+	mod02 = sin(sinAngle02);
+	sinAngle02 += freq02;
+	mod02 *= amp02;
 
-	// first attempt at lerp()
-	// var grad1L = color(Math.ceil(lerp(180, 161, 0.5)), Math.ceil(lerp(235, 209, 0.5)), Math.ceil(lerp(235, 195, 0.9)));
-	// var grad2L = color(Math.ceil(lerp(235, 220, 0.5)), Math.ceil(lerp(210, 199, 0.5)), Math.ceil(lerp(235, 182, 0.1)));
+  push();
+  translate(cx ,cy);
+  rotate(mod01);
+  lineDraw(5.0, circRad, 0, 0);
+  pop();
 
-	setGradient(0, 0, width/2, height, grad1, grad2);
-  setGradient(0, 0, width, height, grad1, grad2);
-	// setGradient(0, 0, width, height, grad1L, grad2L);
-
-
-	// make this into a function so can have several
-	freq = freq * 0.09 + 0.04;
-	mod = sin(sinAngle);
-	sinAngle += freq;
-
-	mod *= amp;
-
-	// console.log(mod);
-	var rampMod = map(mod, -0.2, 0.2, -0.5, 0.5);
-	rad += rampMod;
-
-	push();
-	translate(20,20);
-	stroke(0);
-	bezCircle(angle, rad, ccx, ccy, mod);
-	pop();
-
-	// // thickness changin here
-	// // set strokeWeight to whatever it is
-	// translate(width/2-20 height/2+20);
-	// push();
-	// // so think this should be coming from a different sine
-	// // rotate()
-	// // had more radius changing stuff in here
-	// // bezierCircle
-	// pop();
+  push();
+  translate(cx+50,cy-50);
+  rotate(mod02);
+  lineDraw(4.5, circRad, 0, 0)
+  pop();
 }
 
-function setGradient(x, y, w, h, c1, c2) {
-
-	noFill();
-
-	for (var i = y; i <= y+h; i++) {
-  		var inter = map(i, y, y+h, 0, 1);
-  		var c = lerpColor(c1, c2, inter);
-  		stroke(c);
-  		line(x, i, x+w, i);
-	}
+// could store these in an array and then rotate them
+// would be more efficient
+function lineDraw(angle, radius, cx, cy) {
+  for (var i = -180; i < 0; i+=angle) {
+    if (i > -170 && i < -10) {
+      line((cx + cos(radians(i)) * radius),
+        (cy + sin(radians(i)) * radius),
+        (cx + cos(radians(-i)) * radius),
+        (cy + sin(radians(-i)) * radius));
+    }
+  }
 }
 
-function bezCircle(angle,radius,cx,cy,sinIn) {
-
-	for (var i = -180; i < 180; i += angle) {
-
-		// calculate line lineLength
-		var lineLength = (cy + sin(radians(i)) * (radius)) - (cy + sin(radians(-i)) * (radius));
-		// var lineLength = 10;
-
-		// this misses out a couple of lines?? maybe just chenge bounds but it looks ok...
-		if (i > -170 && i < -10) {
-		// else {
-			bezier (
-				(cx + cos(radians(i)) * (radius)),
-				(cy + sin(radians(i)) * (radius)),
-
-	      		(cx + cos(radians(i)) * (radius)) + ((lineLength/4) * sinIn),
-	      		(cy + sin(radians(i)) * (radius)) - ((lineLength/4)),
-
-	      		(cx + cos(radians(-i)) * (radius)) - ((lineLength/4) * sinIn),
-	      		(cy + sin(radians(-i)) * (radius)) + ((lineLength/4)),
-
-	      		(cx + cos(radians(-i)) * (radius)),
-	      		(cy + sin(radians(-i)) * (radius))
-			)
-		}
-	}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+	cx = windowWidth/2;
+	cy = windowHeight/2;
 }

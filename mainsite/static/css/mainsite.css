@@ -10,6 +10,7 @@ body {
   /*padding-left: 0px !important;*/
   /*padding-right: 0px !important;*/
   text-decoration: none;
+  /*color:white;*/
   font-family: 'Cousine', monospace;
   /*height: 100%*/
   overflow: hidden;
@@ -30,7 +31,7 @@ body {
 }
 
 #mainSketch {
-  /*float:left;*/
+  float:left;
   /*margin-left: auto;*/
   /*overflow: hidden;*/
 }
@@ -40,12 +41,13 @@ body {
   /*overflow: hidden;*/
 }
 
+/* TODO these are text colours for hover links */
 a {
-  color: black;
+  color: white;
 }
-
 a:hover {
-  color:black;
+  color:white;
+  cursor:pointer;
 }
 
 .navbar-toggle .icon-bar {
@@ -92,6 +94,7 @@ a:hover {
 /* show text on hover */
 .overlayImage:hover #overlayText {
   visibility: visible;
+  cursor: pointer;
 }
 
 /* background colour of image (on hover) */
@@ -102,6 +105,7 @@ a:hover {
 
 .overlayImage:hover img {
   opacity : .5;
+  cursor: pointer;
 }
 
 /* Masonry settings */
