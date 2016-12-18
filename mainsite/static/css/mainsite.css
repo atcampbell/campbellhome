@@ -50,6 +50,10 @@ a:hover {
   cursor:pointer;
 }
 
+h3 {
+  font-size: 18px;
+}
+
 .navbar-toggle .icon-bar {
   background-color: black;
 }

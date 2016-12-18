@@ -28,11 +28,11 @@ def get_work_content(request):
         work = Work.objects.get(slug=slug)
         # images = work.work.all()
         images = WorkImage.objects.filter(work=work)
-        print(images)
+        # print('ball bumbo')
         # TODO dont even know why this works... something about context...
         # maybe change all to this if want pictures
         context = {'work': work, 'images': images}
-        print(context)
+        # print(context)
         content = render(request, 'mainsite/work_render.html', context_instance=RequestContext(request, context))
         return HttpResponse(content)
     except Work.DoesNotExist:
@@ -46,7 +46,8 @@ def get_main_content(request):
     slug = "".join(slug.split())
     # get appropriate content
     if slug == 'about':
-        about = About.objects.get(id=1)
+        # about = About.objects.get(id=1)
+        about = About.objects.get(title='About')
         # TODO use render() instead
         content = render_to_string('mainsite/about_render.html', {'about': about})
         return HttpResponse(content)
@@ -71,9 +72,11 @@ def get_main_content(request):
             # workWanted = Work.objects.get(slug=slug)
             # content = workWanted.content
             work = Work.objects.get(slug=slug)
+            images = WorkImage.objects.filter(work=work)
+            context = {'work': work, 'images': images}
             # TODO dont even know why this works... something about context...
             # maybe change all to this if want pictures
-            context = {'work': work}
+            # context = {'work': work}
             content = render(request, 'mainsite/work_render.html', context_instance=RequestContext(request, context))
             return HttpResponse(content)
         except Work.DoesNotExist:

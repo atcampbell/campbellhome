@@ -9,7 +9,8 @@ class Work(models.Model):
     # upload cover image to media folder
     # TODO this is is root directory, should be in mainsite directory with static
     # coverImage = models.ImageField(upload_to='images/')
-    coverImage = models.FileField(upload_to='new/')
+    # coverImage = models.FileField(upload_to='new/')
+    coverImage = models.FileField(upload_to='images/')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -24,7 +25,8 @@ class Work(models.Model):
 class WorkImage(models.Model):
     work = models.ForeignKey(Work, related_name='images')
     # TODO change to its own folder or a folder for each work
-    image = models.FileField(upload_to='new/')
+    # image = models.FileField(upload_to='new/')
+    image = models.FileField(upload_to='images/')
 
     def save(self, *args, **kwargs):
         super(WorkImage, self).save(*args, *kwargs)

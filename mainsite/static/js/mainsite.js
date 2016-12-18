@@ -20,7 +20,7 @@ $(document).ready(function(){
 
         // put margin at top of main content
         // $('.mainContent').css("margin-top", 25);
-        $('.mainContent').css("margin-top", "25px");
+        $('.mainContent').css("margin-top", "30px");
         $('body').css("overflow", "visible");
 
         // initialise masonry
@@ -74,6 +74,7 @@ $(document).ready(function(){
         // $('.mainContent').html(response);
         $('.mainContent').fadeOut('fast', function() {
           $('.mainContent').html(response);
+          $('.mainContent').css("margin-top", "30px");
           $('.mainContent').fadeIn('fast');
         });
       }
