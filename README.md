@@ -1,4 +1,4 @@
-Accessible at: atcampbell.pythonanywhere.com
+atcampbell.pythonanywhere.com
 
 Site documenting music and creative work. All pages currently served with ajax requests.
 
