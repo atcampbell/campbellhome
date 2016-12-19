@@ -27,7 +27,8 @@ def get_main_content(request):
     if slug == 'work':
         works = Work.objects.all()
         context = {'works': works}
-        content = render(request, 'mainsite/work_select_render.html', context_instance=RequestContext(request, context))
+        content = render(request, 'mainsite/work_select_render.html', context)
+        # content = render(request, 'mainsite/work_select_render.html', context_instance=RequestContext(request, context))
         return HttpResponse(content)
     if slug == 'name':
         content = render(request, 'mainsite/main_sketch.html')
@@ -41,7 +42,8 @@ def get_main_content(request):
             # get images for work
             images = WorkImage.objects.filter(work=work)
             context = {'work': work, 'images': images}
-            content = render(request, 'mainsite/work_render.html', context_instance=RequestContext(request, context))
+            content = render(request, 'mainsite/work_render.html', context)
+            # content = render(request, 'mainsite/work_render.html', context_instance=RequestContext(request, context))
             return HttpResponse(content)
         except Work.DoesNotExist:
             # TODO error handling
