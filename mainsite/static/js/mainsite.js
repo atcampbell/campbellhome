@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-  // $(".workToggle").click(function(event) {
-  //   // console.log('toggle work');
-  //   $(".worksDiv").toggle("slow");
-  // });
-
   // ajax get request for html of clicked button's id
   $(".contentButton").click(function() {
     // get id from class (element id is the slug)
@@ -19,14 +14,11 @@ $(document).ready(function(){
         $('.mainContent').html(data);
 
         // put margin at top of main content
-        // $('.mainContent').css("margin-top", 25);
         $('.mainContent').css("margin-top", "30px");
         $('body').css("overflow", "visible");
 
         // initialise masonry
-        // TODO only of work select page - maybe in other function?
         var $grid = $('.grid').masonry({
-          // columnWidth: 20,
           itemSelector: '.grid-item',
           isFitWidth: true,
         });
@@ -36,8 +28,7 @@ $(document).ready(function(){
           $grid.masonry('layout');
         });
 
-        // interpolate text colour
-        // $('a').animate({"color":"#000000"}, 50);
+        // change text colour dependant on background
         $('a').css({"color":"#000000"});
 
         $('.mainContent').fadeIn('fast');
@@ -46,32 +37,31 @@ $(document).ready(function(){
     return false;
   });
 
+  // show the main sketch when returning from other page
   $(".showSketch").click(function() {
+    // fade out main content
     $('.mainContent').fadeOut('fast', function() {
+      // remove margins and overflow
       $('.mainContent').css("margin-top", "0px");
       $('body').css("overflow", "hidden");
+      // change text colour
       $('a').css({"color":"#FFFFFF"});
+      // fade in sketch
       $('#mainSketch').fadeIn('fast');
     });
-    console.log('hey there');
   });
 
   // get work wanted when clicking image
   $(".contentWrapper").on("click", ".grid-item", function() {
+    // id will be slug of work wanted
     var id = this.id;
-
-    console.log('getting clicked');
-
-    // TODO maybe a better way than fading this out all the time?
-    // $('#mainSketch').fadeOut('fast');
-
+    // ajax get request
     $.ajax({
       url: "/get_main_content",
       type: "get",
       data: { contentWanted: id },
       success: function(response) {
-        // console.log(response);
-        // $('.mainContent').html(response);
+        // fade out main content, update and fade in
         $('.mainContent').fadeOut('fast', function() {
           $('.mainContent').html(response);
           $('.mainContent').css("margin-top", "30px");
@@ -80,48 +70,6 @@ $(document).ready(function(){
       }
     });
 
-  });
-
-  // $(".grid").click(function() {
-  //   // var id = this.id;
-  //   // console.log('id = ' + id);
-  //   console.log('cint');
-  // });
-
-  $(".masonryTest").click(function() {
-    console.log('mas test');
-    // $grid.masonry('destroy');
-    var elems = $grid.masonry('getItemElements')
-    $grid.masonry('layout');
-    console.log(elems);
-  });
-
-  //
-  // // ajax get request for html of clicked button's id
-  // $(".contentButton").click(function() {
-  //   // get id from class (element id is the slug)
-  //   var id = this.id;
-  //   // call get_main_content in views.py
-  //   $.get('/get_main_content', {
-  //     contentWanted: id,
-  //   }, function(data) {
-  //     // console.log(data);
-  //     // mainContent div is returned html
-  //     $('.mainContent').html(data);
-  //   });
-  //   return false;
-  // });
-
-  $(".ajaxButton").click(function() {
-    var id = this.id;
-    console.log(id);
-    $.get('/ajax_test', {
-      workWanted: id,
-    }, function(data) {
-      // console.log(data);
-      $('.mainContent').html(data);
-    });
-    return false;
   });
 
   // CSRF token code from https://github.com/realpython/django-form-fun/blob/master/part1/main.js
@@ -146,7 +94,6 @@ $(document).ready(function(){
   /*
   The functions below will create a header with csrftoken
   */
-
   function csrfSafeMethod(method) {
       // these HTTP methods do not require CSRF protection
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));

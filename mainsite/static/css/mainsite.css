@@ -1,59 +1,25 @@
-.workToggle {
-  /*color:blue;*/
-}
-
 body {
-  /* TODO remove for processing sketch */
-  /*padding-top: 40px;*/
-  /*width: 100%;*/
-  /*margin: 0%;*/
-  /*padding-left: 0px !important;*/
-  /*padding-right: 0px !important;*/
   text-decoration: none;
-  /*color:white;*/
   font-family: 'Cousine', monospace;
-  /*height: 100%*/
   overflow: hidden;
 }
 
-.container-fluid {
-  /*height: 100%*/
-  /*overflow: hidden;*/
-}
-
-.container {
-  /*padding: -15px;*/
-  /*margin-left: -20px;
-  margin-right: -20px;
-  margin-right: auto;
-  margin-left: auto;*/
-  /*float:left;*/
-}
-
+/* processing sketch, float left to avoid bootstrap padding */
 #mainSketch {
   float:left;
-  /*margin-left: auto;*/
-  /*overflow: hidden;*/
 }
 
-.mainContent {
-  /*padding-top: 20px;*/
-  /*overflow: hidden;*/
-}
-
-/* TODO these are text colours for hover links */
-a {
-  color: white;
-}
-a:hover {
-  color:white;
-  cursor:pointer;
+/* centre iframes in page */
+iframe {
+  margin: 0 auto;
+  display:block;
 }
 
 h3 {
   font-size: 18px;
 }
 
+/* navbar settings */
 .navbar-toggle .icon-bar {
   background-color: black;
 }
@@ -71,11 +37,16 @@ h3 {
   background: none;
 }
 
-#mainContainer {
-  /*margin-left: 15px;*/
+/* link colours on index page load */
+a {
+  color: white;
+}
+a:hover {
+  color:white;
+  cursor:pointer;
 }
 
-/* Carousel settings */
+/* remove gradient from sides of image carousel */
 .carousel-control.left, .carousel-control.right {
     background-image: none
 }
@@ -101,7 +72,7 @@ h3 {
   cursor: pointer;
 }
 
-/* background colour of image (on hover) */
+/* background colour of image */
 .overlayImage {
   height: inherit;
   background-color: #000000;
@@ -120,8 +91,6 @@ h3 {
 .grid-item {
   float: left;
   width: 350px;
-  /*height: 300px;*/
-  /*border: 2px solid hsla(0, 0%, 0%, 0.5);*/
   overflow: hidden;
 }
 
@@ -129,11 +98,7 @@ h3 {
   width: 350px;
 }
 
-/* Thumbnail stuff */
+/* Thumbnail */
 .thumb {
     margin-bottom: 30px;
-}
-
-footer {
-    /*margin: 50px 0;*/
 }

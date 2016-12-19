@@ -13,9 +13,8 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme TODO does this come back in??? -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -23,11 +22,11 @@
 
     <script src="{% static 'js/mainsite.js' %}"></script>
 
-    <!-- TODO change to local -->
     <!-- Masonry -->
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 
+    <!-- processing -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.0/p5.js"></script>
     <script src="{% static 'js/mainPageSketch.js' %}"></script>
 
@@ -42,27 +41,27 @@
       <!-- <div class="container"> -->
 
         <div class="navbar-header">
-          <!-- TODO this links back to main page sketch -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+          <!-- TODO implement nav collapse -->
+          <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> -->
+            <!-- <span class="icon-bar"></span> -->
+            <!-- <span class="icon-bar"></span> -->
+            <!-- <span class="icon-bar"></span> -->
+          <!-- </button> -->
           <!-- <ul class="nav navbar-nav"><li><a class="contentButton" id="name">Adam Campbell</a></li></ul> -->
           <ul class="nav navbar-nav"><li><a class="showSketch" id="name">Adam Campbell</a></li></ul>
         </div>
 
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
           <ul class="nav navbar-nav">
             <li><a class="contentButton" id="work">Work</a></li>
             <li><a class="contentButton" id="about">About</a></li>
             <li><a class="contentButton" id="news">News</a></li>
           </ul>
-        </div>
+        <!-- </div> -->
       </div>
     </nav>
 
-    <!-- change to container if wanting fixed for each, this takes full width -->
+    <!-- containers for main page content -->
     <div class="container-fluid">
       <div class="contentWrapper">
         {% block content %}

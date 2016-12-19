@@ -2,14 +2,12 @@ from django.db import models
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 
+# information for a single work
 class Work(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     slug = models.SlugField()
     # upload cover image to media folder
-    # TODO this is is root directory, should be in mainsite directory with static
-    # coverImage = models.ImageField(upload_to='images/')
-    # coverImage = models.FileField(upload_to='new/')
     coverImage = models.FileField(upload_to='images/')
 
     def save(self, *args, **kwargs):
@@ -22,10 +20,10 @@ class Work(models.Model):
     def __str__(self):
         return self.title
 
+# images used in work posts
 class WorkImage(models.Model):
+    # the work the image relates to
     work = models.ForeignKey(Work, related_name='images')
-    # TODO change to its own folder or a folder for each work
-    # image = models.FileField(upload_to='new/')
     image = models.FileField(upload_to='images/')
 
     def save(self, *args, **kwargs):
@@ -34,6 +32,7 @@ class WorkImage(models.Model):
     def __str__(self):
         return str(self.id)
 
+#  news items
 class News(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -45,6 +44,7 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
+# about page
 class About(models.Model):
     title=models.CharField(max_length=200)
     content = models.TextField()
