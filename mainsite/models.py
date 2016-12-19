@@ -27,7 +27,7 @@ class WorkImage(models.Model):
     image = models.FileField(upload_to='images/')
 
     def save(self, *args, **kwargs):
-        super(WorkImage, self).save(*args, *kwargs)
+        super(WorkImage, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.id)
