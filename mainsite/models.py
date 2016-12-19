@@ -12,7 +12,7 @@ class Work(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Work, self).save(*args, *kwargs)
+        super(Work, self).save(*args, **kwargs)
 
     def publish(self):
         self.save()
